@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 const navLinks = [
   { label: "Projects", href: "/projects" },
@@ -10,7 +11,14 @@ const navLinks = [
 
 export default function Home() {
   return (
-    <main className="flex flex-1 min-h-screen">
+    <main className="relative flex flex-1 min-h-screen overflow-hidden">
+      {/* Subtle dot grid background — low opacity, no glow */}
+      <DotPattern
+        width={24}
+        height={24}
+        cr={0.8}
+        className="opacity-[0.22] dark:opacity-[0.18]"
+      />
       {/* Two-column grid: stacks vertically on mobile, splits on md+ */}
       <div className="grid grid-cols-1 md:grid-cols-2 w-full">
         {/* Left column — Name & bio, positioned slightly above vertical center */}
