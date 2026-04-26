@@ -57,7 +57,7 @@ const socialLinks = [
 export function DockNav() {
   return (
     <TooltipProvider>
-      <Dock direction="middle">
+      <Dock direction="middle" iconSize={40} iconMagnification={70} iconDistance={100}>
         {socialLinks.map((item, idx) => (
           <React.Fragment key={item.name}>
             {idx === 2 && <Separator orientation="vertical" className="h-full" />}
