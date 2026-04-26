@@ -24,7 +24,7 @@ function ProjectCard({
         // spacing
         "px-5 py-4",
         // look: very subtle border, no heavy weight
-        "border border-border/60 rounded-sm",
+        "border border-border/60 rounded-xl",
         // hover state
         "hover:bg-muted/30 hover:border-border",
         // cursor
@@ -45,8 +45,8 @@ function ProjectCard({
         {project.name}
       </p>
 
-      {/* Description */}
-      <p className="mt-1 text-sm text-muted-foreground font-normal leading-snug">
+      {/* Description — up to 2 lines */}
+      <p className="mt-1.5 text-sm text-muted-foreground font-normal leading-relaxed line-clamp-2">
         {project.description}
       </p>
     </button>

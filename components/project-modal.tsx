@@ -15,14 +15,17 @@ interface SectionProps {
 
 function Section({ label, children }: SectionProps) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <span className="text-xs uppercase tracking-widest text-muted-foreground/60 font-normal">
-        {label}
-      </span>
-      <p className="text-sm text-foreground/90 leading-relaxed font-normal">
-        {children}
-      </p>
-    </div>
+    <>
+      <div className="border-t border-border/25" />
+      <div className="flex flex-col gap-1.5">
+        <span className="text-xs uppercase tracking-widest text-muted-foreground/60 font-normal">
+          {label}
+        </span>
+        <p className="text-sm text-foreground/90 leading-relaxed font-normal">
+          {children}
+        </p>
+      </div>
+    </>
   );
 }
 
@@ -86,7 +89,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           // sizing
           "relative w-full max-w-xl max-h-[85vh]",
           // look
-          "bg-background border border-border rounded-sm",
+          "bg-background border border-border rounded-2xl",
           // scrollable content
           "overflow-y-auto",
           // inner spacing
@@ -126,16 +129,16 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Links */}
             {(project.github || project.live) && (
-              <div className="flex items-stretch border border-border rounded-sm overflow-hidden mt-1">
+              <div className="flex items-stretch border border-border/60 rounded-xl overflow-hidden mt-1">
                 {project.github && (
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={[
-                      "flex-1 text-center py-2.5 text-xs text-muted-foreground",
-                      "hover:text-foreground hover:bg-muted/40 transition-colors duration-150",
-                      "font-normal tracking-wide",
+                      "flex-1 text-center py-2.5 text-xs font-normal tracking-wide",
+                      "bg-foreground text-background",
+                      "hover:opacity-75 transition-opacity duration-150",
                     ].join(" ")}
                   >
                     GitHub ↗
@@ -144,7 +147,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                 {/* Vertical separator only when both links exist */}
                 {bothLinks && (
-                  <div className="w-px bg-border self-stretch" />
+                  <div className="w-px bg-border/40 self-stretch" />
                 )}
 
                 {project.live && (
@@ -153,9 +156,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={[
-                      "flex-1 text-center py-2.5 text-xs text-muted-foreground",
-                      "hover:text-foreground hover:bg-muted/40 transition-colors duration-150",
-                      "font-normal tracking-wide",
+                      "flex-1 text-center py-2.5 text-xs font-normal tracking-wide",
+                      "bg-foreground text-background",
+                      "hover:opacity-75 transition-opacity duration-150",
                     ].join(" ")}
                   >
                     Live ↗
