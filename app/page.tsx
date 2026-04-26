@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { DotPattern } from "@/components/ui/dot-pattern";
+import { DockNav } from "@/components/dock-nav";
 
 const navLinks = [
   { label: "Projects", href: "/projects" },
   { label: "Decision Blogs", href: "/decision-blogs" },
   { label: "What I Believe In", href: "/what-i-believe-in" },
-  { label: "Contact", href: "/contact" },
   { label: "Experience", href: "/experience" },
 ];
 
@@ -47,6 +47,12 @@ export default function Home() {
           ))}
         </nav>
       </div>
+
+      {/* Floating dock — fixed bottom center */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+        <DockNav />
+      </div>
     </main>
   );
 }
+
