@@ -16,40 +16,60 @@ function ProjectCard({
   onClick: (p: Project) => void;
 }) {
   return (
-    <button
-      onClick={() => onClick(project)}
+    <div
       className={[
-        // layout
-        "w-full text-left",
-        // spacing
-        "px-5 py-3",
-        // look: very subtle border, no heavy weight
-        "border border-border/60 rounded-xl",
-        // hover state
+        "relative border border-border/60 rounded-xl",
         "hover:bg-muted/30 hover:border-border",
-        // cursor
-        "cursor-pointer",
-        // transition
         "transition-colors duration-150",
-        // relative for the date badge
-        "relative",
       ].join(" ")}
     >
-      {/* Date — top right, very low opacity, xs */}
-      <span className="absolute top-4 right-5 text-xs text-foreground opacity-35 font-normal tabular-nums">
+      {/* Date — top right, very low opacity */}
+      <span className="absolute top-6 right-6 text-xs text-foreground opacity-35 font-normal tabular-nums">
         {project.date}
       </span>
 
-      {/* Name */}
-      <p className="text-xl font-normal text-foreground pr-16">
-        {project.name}
-      </p>
+      {/* Clickable region — opens modal */}
+      <button
+        onClick={() => onClick(project)}
+        className="w-full text-left px-6 pt-6 pb-4 cursor-pointer"
+      >
+        {/* Name */}
+        <p className="text-xl font-normal text-foreground pr-20">
+          {project.name}
+        </p>
 
-      {/* Description — up to 2 lines */}
-      <p className="mt-1.5 text-sm text-foreground/40 font-normal leading-relaxed line-clamp-2">
-        {project.description}
-      </p>
-    </button>
+        {/* Description — 3 lines max, right-padded so it doesn't bleed to the edge */}
+        <p className="mt-2 text-sm text-foreground/40 font-normal leading-relaxed line-clamp-3 pr-10">
+          {project.description}
+        </p>
+      </button>
+
+      {/* Links row — sibling of button, not nested inside it (valid HTML) */}
+      {(project.github || project.live) && (
+        <div className="flex items-center gap-5 px-6 pb-5">
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-foreground/40 hover:text-foreground/70 transition-colors duration-150"
+            >
+              GitHub ↗
+            </a>
+          )}
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-foreground/40 hover:text-foreground/70 transition-colors duration-150"
+            >
+              Live ↗
+            </a>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -61,7 +81,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
 
   return (
     <>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} onClick={openModal} />
         ))}
