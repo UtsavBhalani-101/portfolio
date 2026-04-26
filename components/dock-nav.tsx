@@ -48,10 +48,10 @@ const Icons = {
 }
 
 const socialLinks = [
-  { name: "GitHub",   url: "https://github.com/",   icon: Icons.github   },
-  { name: "LinkedIn", url: "https://linkedin.com/",  icon: Icons.linkedin },
-  { name: "X",        url: "https://x.com/",         icon: Icons.x        },
-  { name: "Email",    url: "mailto:you@example.com", icon: Icons.email    },
+  { name: "GitHub",   url: "https://github.com/UtsavBhalani-101/",   icon: Icons.github   },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/utsav-bhalani",  icon: Icons.linkedin },
+  { name: "X",        url: "https://x.com/Utsav_Bhalani_",         icon: Icons.x        },
+  { name: "Email",    url: "mailto:utsavbhalani.tech@gmail.com", icon: Icons.email    },
 ]
 
 export function DockNav() {

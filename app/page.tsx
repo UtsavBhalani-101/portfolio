@@ -5,7 +5,7 @@ import { DockNav } from "@/components/dock-nav";
 const navLinks = [
   { label: "Projects", href: "/projects" },
   { label: "Decision Blogs", href: "/decision-blogs" },
-  { label: "What I Believe In", href: "/what-i-believe-in" },
+  { label: "Notes", href: "/notes" },
   { label: "Experience", href: "/experience" },
 ];
 
@@ -27,7 +27,7 @@ export default function Home() {
             Utsav Bhalani
           </h1>
           <p className="mt-4 text-sm text-muted-foreground font-normal max-w-xs leading-relaxed">
-            Building things, writing about decisions, and figuring it out along the way.
+            20. Building a system to catch data problems before they reach model.
           </p>
         </div>
 
