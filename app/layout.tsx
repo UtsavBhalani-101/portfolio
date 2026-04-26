@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -44,11 +44,10 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
-          disableTransitionOnChange
         >
           {/* Theme toggle — fixed top right */}
           <div className="fixed top-6 right-6 z-50">
-            <ThemeToggle />
+            <AnimatedThemeToggler variant="circle" />
           </div>
           {children}
         </ThemeProvider>
