@@ -15,17 +15,14 @@ interface SectionProps {
 
 function Section({ label, children }: SectionProps) {
   return (
-    <>
-      <div className="border-t border-border/25" />
-      <div className="flex flex-col gap-1.5">
-        <span className="text-xs uppercase tracking-widest text-muted-foreground/60 font-normal">
-          {label}
-        </span>
-        <p className="text-sm text-foreground/90 leading-relaxed font-normal">
-          {children}
-        </p>
-      </div>
-    </>
+    <div className="flex flex-col gap-3 pt-8 border-t border-border/20">
+      <span className="text-xs uppercase tracking-widest text-foreground/40 font-normal">
+        {label}
+      </span>
+      <p className="text-sm text-foreground/85 leading-relaxed font-normal max-w-prose">
+        {children}
+      </p>
+    </div>
   );
 }
 
@@ -109,7 +106,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         </button>
 
         {project && (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-0">
             {/* Header */}
             <div className="pr-6">
               <h2 className="text-base font-normal text-foreground">

@@ -22,7 +22,7 @@ function ProjectCard({
         // layout
         "w-full text-left",
         // spacing
-        "px-5 py-4",
+        "px-5 py-3",
         // look: very subtle border, no heavy weight
         "border border-border/60 rounded-xl",
         // hover state
@@ -41,12 +41,12 @@ function ProjectCard({
       </span>
 
       {/* Name */}
-      <p className="text-base font-normal text-foreground pr-16">
+      <p className="text-xl font-normal text-foreground pr-16">
         {project.name}
       </p>
 
       {/* Description — up to 2 lines */}
-      <p className="mt-1.5 text-sm text-muted-foreground font-normal leading-relaxed line-clamp-2">
+      <p className="mt-1.5 text-sm text-foreground/40 font-normal leading-relaxed line-clamp-2">
         {project.description}
       </p>
     </button>
