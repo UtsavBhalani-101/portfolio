@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import type { Project } from "@/lib/projects-data";
 import { ProjectModal } from "@/components/project-modal";
 
@@ -81,9 +81,14 @@ export function ProjectsList({ projects }: ProjectsListProps) {
 
   return (
     <>
-      <div className="flex flex-col gap-3">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} onClick={openModal} />
+      <div className="flex flex-col">
+        {projects.map((project, idx) => (
+          <React.Fragment key={project.id}>
+            {idx > 0 && (
+              <div className="my-4" />
+            )}
+            <ProjectCard project={project} onClick={openModal} />
+          </React.Fragment>
         ))}
       </div>
 
