@@ -39,7 +39,7 @@ export default function Home() {
               href={link.href}
               className="group flex items-center gap-2 text-base text-muted-foreground hover:text-foreground transition-colors duration-150 ease-in-out cursor-pointer"
             >
-              <span>{link.label}</span>
+              <span className="group-hover:underline underline-offset-4 decoration-current transition-all duration-200">{link.label}</span>
               <span className="text-sm transition-colors duration-150 ease-in-out">
                 ↗
               </span>
