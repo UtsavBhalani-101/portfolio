@@ -1,0 +1,15 @@
+---
+title: "Why I used Signal Maps for the ML Diagnostics Engine"
+date: "May 2025"
+description: "Explaining the architecture behind the ML Diagnostics Engine."
+---
+
+When building the ML Diagnostics Engine, I needed a way to robustly check datasets for various problems before training—class imbalance, silent leakage, and distribution drift. The simplest approach would have been returning raw booleans from isolated functions, but that quickly breaks down at scale.
+
+Instead, I designed a **Signal-Map** pattern. Each check in the engine doesn't just return true/false; it emits a strongly typed signal containing metadata about what went wrong, where it happened, and how severe it is.
+
+## The Architecture
+
+A logic orchestration layer sits on top of these signals. It validates the contracts between them before running any complex risk functions. If a dependency check fails, the orchestration layer short-circuits gracefully instead of propagating the error silently through the pipeline.
+
+This means the user gets a structured, actionable risk report rather than a traceback or a misleading "false" output. It forces the system to be explicit about failures, aligning with the philosophy of catching problems early and loudly.

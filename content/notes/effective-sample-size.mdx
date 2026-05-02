@@ -1,0 +1,13 @@
+---
+title: "Understanding Effective Sample Size"
+date: "Feb 2025"
+description: "Notes on data diversity and sample sizes."
+---
+
+When working with large tabular datasets, the raw row count is often a poor proxy for how much a dataset can actually teach a model. A dataset with 10,000 near-duplicate rows is informationally thinner than one with 1,000 diverse ones.
+
+To accurately estimate the true diversity of a dataset, I look at the eigenvalue spectrum of the sample covariance matrix. This acts as a proxy for information density, estimating how much independent information each sample contributes.
+
+## Mathematical Proxy
+
+By normalizing the ranks of the covariance matrix, you can produce a scalar value between 0 and 1. This value can be multiplied against the original `n_samples` to give a far more realistic estimate of the dataset's learning potential. It's a fundamental diagnostic to prevent overconfidence in large but redundant datasets.

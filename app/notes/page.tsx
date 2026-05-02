@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getMdxData } from "@/lib/mdx";
 
 export const metadata: Metadata = {
   title: "Notes — Utsav Bhalani",
@@ -7,13 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function NotesPage() {
-  const notes = [
-    {
-      slug: "effective-sample-size",
-      title: "Understanding Effective Sample Size",
-      date: "Feb 2025"
-    }
-  ];
+  const notes = getMdxData("notes").sort((a, b) => {
+    return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
+  });
 
   return (
     <main className="min-h-screen px-6 py-16 sm:px-10 md:px-16 lg:px-24">
@@ -39,10 +36,10 @@ export default function NotesPage() {
               className="group flex justify-between items-baseline py-2 cursor-pointer"
             >
               <span className="text-base text-foreground group-hover:underline underline-offset-4 decoration-current transition-all duration-200">
-                {note.title}
+                {note.frontmatter.title}
               </span>
               <span className="text-xs text-muted-foreground tabular-nums whitespace-nowrap ml-4">
-                {note.date}
+                {note.frontmatter.date}
               </span>
             </Link>
           ))}
