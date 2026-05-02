@@ -69,16 +69,17 @@ export function DotPattern({
     <svg
       ref={containerRef}
       aria-hidden="true"
+      suppressHydrationWarning
       className={cn(
         "pointer-events-none absolute inset-0 h-full w-full text-neutral-400/80",
         className
       )}
       {...props}
     >
-      <defs>
-        <radialGradient id={`${id}-gradient`}>
-          <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
-          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+      <defs suppressHydrationWarning>
+        <radialGradient id={`${id}-gradient`} suppressHydrationWarning>
+          <stop offset="0%" stopColor="currentColor" stopOpacity="1" suppressHydrationWarning />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0" suppressHydrationWarning />
         </radialGradient>
       </defs>
       {dots.map((dot) => (

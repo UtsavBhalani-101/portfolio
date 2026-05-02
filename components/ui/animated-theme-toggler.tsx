@@ -135,9 +135,11 @@ export const AnimatedThemeToggler = ({
 }: AnimatedThemeTogglerProps) => {
   const shape = variant ?? "circle"
   const [isDark, setIsDark] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
+    setMounted(true)
     const updateTheme = () => {
       setIsDark(document.documentElement.classList.contains("dark"))
     }
@@ -235,6 +237,20 @@ export const AnimatedThemeToggler = ({
     }
   }, [shape, fromCenter, duration, isDark])
 
+  // To prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <button
+        type="button"
+        className={cn(className)}
+        {...props}
+      >
+        <div className="w-6 h-6" />
+        <span className="sr-only">Toggle theme</span>
+      </button>
+    )
+  }
+
   return (
     <button
       type="button"
@@ -248,3 +264,4 @@ export const AnimatedThemeToggler = ({
     </button>
   )
 }
+
