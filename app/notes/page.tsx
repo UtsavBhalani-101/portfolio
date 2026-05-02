@@ -2,16 +2,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Decision Blogs — Utsav Bhalani",
-  description: "Technical reasoning over results.",
+  title: "Notes — Utsav Bhalani",
+  description: "Things I've learned, jotted down.",
 };
 
-export default function DecisionBlogsPage() {
-  const blogs = [
+export default function NotesPage() {
+  const notes = [
     {
-      slug: "why-signal-maps",
-      title: "Why I used Signal Maps for the ML Diagnostics Engine",
-      date: "May 2025"
+      slug: "effective-sample-size",
+      title: "Understanding Effective Sample Size",
+      date: "Feb 2025"
     }
   ];
 
@@ -25,24 +25,24 @@ export default function DecisionBlogsPage() {
           ← back
         </Link>
         <h1 className="text-base font-normal text-foreground mb-1">
-          Decision Blogs
+          Notes
         </h1>
         <p className="text-sm text-muted-foreground font-normal mb-8">
-          Technical reasoning over results.
+          Things I've learned, jotted down.
         </p>
 
         <div className="flex flex-col gap-4 mt-8">
-          {blogs.map((blog) => (
+          {notes.map((note) => (
             <Link
-              key={blog.slug}
-              href={`/decision-blogs/${blog.slug}`}
+              key={note.slug}
+              href={`/notes/${note.slug}`}
               className="group flex justify-between items-baseline py-2 cursor-pointer"
             >
               <span className="text-base text-foreground group-hover:underline underline-offset-4 decoration-current transition-all duration-200">
-                {blog.title}
+                {note.title}
               </span>
               <span className="text-xs text-muted-foreground tabular-nums whitespace-nowrap ml-4">
-                {blog.date}
+                {note.date}
               </span>
             </Link>
           ))}
