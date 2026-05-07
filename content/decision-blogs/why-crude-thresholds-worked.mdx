@@ -1,0 +1,35 @@
+---
+title: "A system that doesn't thake decision is useless"
+date: "May 2025"
+description: "A swing from thinking rule-based thresholds are useless to realizing they work — when the signals are clean."
+---
+
+*just because of one incident, I had a swing of false realization that rule-based thresholds are the most useless to the most useful thing in the world. Well it's neither of them. Let me explain...*
+
+### Context
+
+- I've deployed the initial version of Layer 1 (L1) with Dimensions and it was just... useless. It gives you random numbers that don't mean anything. Even as the guy who built this, I didn't understand what the hell was going on.
+
+### What Happened?
+
+- the whole idea is that I have data and to find data issues, I use signals. These signals extract info from the data and that info is processed and then a decision is made from the final result.
+- the problem is on the decision part. I was trying to design a system that doesn't make any wrong decisions. So in order to achieve this impossible goal, I started to build workarounds and add complexities. In the first version, in order to achieve this goal, I somehow accidentally removed the decision-making in the first place.
+- the simplest way the system can make a decision is using thresholds (if-else). Just define the condition and what decision to take for that. This is fine to start with, but as my instinct goes, I hated it. I wanted something god-like, ultra-complex, a freaking brain-type decision-making that will replace the human... (kinda).
+- so I switched to a score-based system. Now I don't need to define a condition, I can just define the severity of the problem. Much like a neuron in a neural network — weights × inputs.
+- this worked, I completed L1, shipped. Realized it's shit. It was shit because there are numbers floating on my screen like traffic lights and telling me this is a problem because it's > 0.78. The system was not making any decision at all.
+- so I redesigned the entire thing making sure that now it makes decisions and takes a stance. For that I tried the simplest approach (crude if-else thresholds) to understand why it doesn't work and to break my bad habit of adding abstraction.
+- it worked surprisingly well. I didn't understand why, but using universally accepted thresholds and high-quality signals were enough to even make a simple workflow like this perform great.
+
+### What I Found
+
+- high-quality signals + universally accepted thresholds are the reason why crude thresholds worked for L1.
+- this won't be the case for L2 or other downstream layers because there will be noisy, overlapping, and weak signals.
+- a system that doesn't make a decision is useless. Especially an ML system.
+- taking a wrong decision is better than taking no decision and hiding behind ambiguity. In most cases, wrong decisions can be made correct.
+
+### Constraints
+
+- these are still just basic if-else conditions that are tested on a lot of data and real-world cases to make sure they are robust.
+- these are basically drawing hard decision boundaries. These hard decision boundaries work here but not everywhere.
+- these hard boundaries can make wrong decisions.
+- there is no learning here.

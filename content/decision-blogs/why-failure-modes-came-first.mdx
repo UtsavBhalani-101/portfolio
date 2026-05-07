@@ -1,0 +1,37 @@
+---
+title: "Explicitly defining assumptions and requirements is the gate to add anything"
+date: "May 2025"
+description: "The first version of Layer 1 selected signals based on intuition. It worked, but it wasn't enough."
+---
+
+*the first version of Layer 1 selected signals based on what I thought failure looked like. Missing values, constants, duplicates. Not wrong, just incomplete in a way I couldn't see yet.*
+
+### Context
+- Layer 1 (deployed and working) is a part of the diagnostic system that detects structural data issues.
+- issues that break downstream tasks regardless of model choice.
+- it extracts information from the data in the form of signals and uses these to make decisions and detect problems.
+
+### What Happened?
+
+- so to build Layer 1, I started off with the obvious stuff — missing data, duplicates, mixed types, etc. It was working fine, but I had a hunch that this just might not be enough.
+- soon enough this was confirmed with AI — the current version of Layer 1 (L1) is not at all enough. It only detects data integrity issues (is the data trustworthy at all?).
+- but it completely missed the other areas. If the target is missing or garbage, or the data is just utter noise, it still passes. So in the next version I added these failure modes. To be specific, I added these ones:
+  1. target sanity (is the target usable?)
+  2. sample adequacy (are there effective independent samples to learn from?)
+  3. feature–target relationship (do they behave similarly for similar features?)
+
+`NOTE — failure mode = a specific way in which the data is broken. It's the root cause.`
+
+- after adding these, I think all the failure modes (areas from which the system can fail) are covered. I like to call these failure modes "Dimensions" (just a fancy term).
+- these are just failure modes or Dimensions, but they represent the class of problems. To actually detect these problems, I need multiple signals that detect different parts of their respective failure mode.
+- eg. sample dependency, feature variance, etc. for sample adequacy and target degeneracy, target entropy, etc. for target sanity.
+
+### What I Found
+
+- when adding anything to a system or code, it should be grounded by the core principles of what the system should do and how it should work.
+- your system should be architecturally flexible enough that when you encounter an entire new class of failure mode, you don't have to redesign everything — just append it.
+
+### Constraints
+
+- it assumes the target is present and works for supervised ML tasks (for now), so tabular data.
+- the info from the signal is then processed and the final decision is based on crude, rule-based, universally accepted heuristics. These are rigorously tested but are context-agnostic.

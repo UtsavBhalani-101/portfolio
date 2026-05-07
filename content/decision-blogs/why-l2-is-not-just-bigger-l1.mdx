@@ -1,0 +1,32 @@
+---
+title: "One list of universal assumptions about the system is not enough"
+date: "May 2025"
+description: "Weak signals should not be treated the same as normal signals. They work differently."
+---
+
+*weak signals should not be treated the same as normal signals. They work differently.*
+
+### Context
+
+- I was building Layer 2 (L2).
+- L2 detects feature-level problems. It identifies the data type of the column and based on that it finds detailed (independent) column-level problems.
+
+### What Happened?
+
+- when I was building L2, the first reaction was to categorize the columns with respect to their dtypes, based on the failure mode of that dtype — detect and extract info, make a decision. But things weren't that easy.
+- I was running on the hidden assumption from L1 → signals are high quality, low noise, and non-overlapping, representing info from data. All of those assumptions broke in L2.
+- the failure modes are more detailed and overlapping, each failure mode has multiple signals and these are weak and noisy. Some are more dangerous than others.
+- so to fix this, I did architectural changes. L2 went from flat (treating all the same) to a strict hierarchy. This hierarchy is based on "when this failure mode is detected, how badly does it affect things?" The hierarchy is: Usability → Semantics → Quality → Affordance.
+- each signal is categorized into one of these levels and if the level is higher, it can override the lower-level signals.
+- another thing I realized is that crude thresholds won't work here. There are no clear, hard decision boundaries and signals are also noisy, weak, and overlapping.
+
+### What I Found
+
+- treating L2 just as L1 but bigger was a complete failure. L2 is fundamentally different from L1.
+- flat hierarchy works only when all are equally important, and that's rarely the case.
+
+### Constraints
+
+- it's still being built so I might need to do more changes if the situation demands.
+- the bigger problem is connecting these multiple signals from 4 levels and doing that for all the dtypes — the architectural challenge is definitely a big one.
+- this assumes the data is structured and tabular.

@@ -4,8 +4,13 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = getMdxBySlug("decision-blogs", params.slug);
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getMdxBySlug("decision-blogs", slug);
   if (!post) {
     return {};
   }
@@ -22,8 +27,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPage({ params }: { params: { slug: string } }) {
-  const post = getMdxBySlug("decision-blogs", params.slug);
+export default async function BlogPage({ params }: PageProps) {
+  const { slug } = await params;
+  const post = getMdxBySlug("decision-blogs", slug);
 
   if (!post) {
     notFound();

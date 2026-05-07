@@ -4,8 +4,13 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = getMdxBySlug("notes", params.slug);
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getMdxBySlug("notes", slug);
   if (!post) {
     return {};
   }
@@ -22,8 +27,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function NotePage({ params }: { params: { slug: string } }) {
-  const post = getMdxBySlug("notes", params.slug);
+export default async function NotePage({ params }: PageProps) {
+  const { slug } = await params;
+  const post = getMdxBySlug("notes", slug);
 
   if (!post) {
     notFound();
